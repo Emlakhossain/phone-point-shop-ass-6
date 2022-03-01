@@ -5,11 +5,17 @@ load search text
 const toggleSpinner = displayStyle => {
     document.getElementById('spinner').style.display = displayStyle;
 }
+// toggle search result 
+const toggleSearchResult = displayStyle => {
+    document.getElementById('search-result').style.display = displayStyle;
+}
 // Search field setup by arrow function
 const loadSearchField = () => {
     const searchText = document.getElementById('search-field').value;
+
     // display spinner
-    toggleSpinner('block')
+    toggleSpinner('block');
+    toggleSearchResult('none');
     loadSearchData(searchText);
     document.getElementById('search-field').value = '';
 }
@@ -26,9 +32,13 @@ const loadSearchData = searchText => {
 loadSearchData('phone')
 
 const displayPhone = (phones) => {
+    // console.log(phones)
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
-    phones.forEach(phone => {
+    if (!phones) {
+        alert('Dont mathed your result')
+    }
+    phones?.forEach(phone => {
         // if (!phones) {
         //     return alert('please type again')
         // }
@@ -52,6 +62,7 @@ const displayPhone = (phones) => {
         searchResult.appendChild(div);
     });
     toggleSpinner('none');
+    toggleSearchResult('flex')
 
 }
 
@@ -67,19 +78,26 @@ const moreInformation = (Id) => {
 
 }
 const displayMoreInformation = (phone) => {
-    // console.log(phone)
+    console.log(phone)
     const moreInfo = document.getElementById('more-info');
+    moreInfo.textContent = '';
     const div = document.createElement('div');
     div.classList.add('card');
     div.innerHTML = `
 <img style="width:200px;" src="${phone.image}" class="card-img-top img-fluid mx-auto p-3" alt="...">
 <div class="card-body">
-    <h5 class="card-title">Name: ${phone.phone_name}</h5>
-    <p class="card-text">ReliseDate: ${phone.releaseDate}</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <h5 class="card-title">Name: ${phone.name}</h5>
+    <p class="card-text">ReliseDate: ${phone.releaseDate ? phone.releaseDate : 'No Data found'}</p>
+    <p>MainFeatures:${phone.mainFeatures.storage}</p>
+    <p>Display:${phone.mainFeatures.displaySize}</p>
+    <p>Sensors:${phone.mainFeatures.sensors}</p> 
+    <p>Memory:${phone.mainFeatures.memory}</p>
+    
+    <a href="#" class="btn btn-primary ">Go To Buy</a>
 </div>
 `;
     moreInfo.appendChild(div)
+
 }
 
 
