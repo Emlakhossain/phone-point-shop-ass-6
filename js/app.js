@@ -12,7 +12,6 @@ const toggleSearchResult = displayStyle => {
 // Search field setup by arrow function
 const loadSearchField = () => {
     const searchText = document.getElementById('search-field').value;
-
     // display spinner
     toggleSpinner('block');
     toggleSearchResult('none');
@@ -36,24 +35,20 @@ const displayPhone = (phones) => {
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
     phones?.forEach(phone => {
-        // if (!phones) {
-        //     return alert('please type again')
-        // }
         const div = document.createElement('div');
         div.classList.add('col');
-
         div.innerHTML = `
         <div class="card h-100 shadow p-3 mb-5 bg-body rounded">
-        <img style="width:200px;" src="${phone.image} "class="card-img-top img-fluid mx-auto p-3" alt="...">
+            <img style="width:200px;" src="${phone.image} "class="card-img-top img-fluid mx-auto p-3" alt="...">
         <div class="card-body">
             <h5 class="card-title"> Name:${phone.phone_name}</h5>
             <p>Brand:${phone.brand}</p>
             <p>Id:${phone.slug} </p>
         </div>
         <div class="d-grid gap-2 col-6 mx-auto py-3">
-  <button onclick="moreInformation('${phone.slug}')" class="btn btn-primary" type="button">More Info</button>
+             <button onclick="moreInformation('${phone.slug}')" class="btn btn-primary" type="button">More Info</button>
   
-</div>
+        </div>
     </div>
         `;
         searchResult.appendChild(div);
