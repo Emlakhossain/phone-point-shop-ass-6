@@ -27,7 +27,7 @@ const loadSearchData = searchText => {
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
     fetch(url)
         .then(res => res.json())
-        .then(data => displayPhone(data.data))
+        .then(data => displayPhone(data.data.slice(0, 20)))
 }
 loadSearchData('phone')
 
@@ -35,9 +35,6 @@ const displayPhone = (phones) => {
     // console.log(phones)
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
-    if (!phones) {
-        alert('Dont mathed your result')
-    }
     phones?.forEach(phone => {
         // if (!phones) {
         //     return alert('please type again')
@@ -46,7 +43,7 @@ const displayPhone = (phones) => {
         div.classList.add('col');
 
         div.innerHTML = `
-        <div class="card h-100">
+        <div class="card h-100 shadow p-3 mb-5 bg-body rounded">
         <img style="width:200px;" src="${phone.image} "class="card-img-top img-fluid mx-auto p-3" alt="...">
         <div class="card-body">
             <h5 class="card-title"> Name:${phone.phone_name}</h5>
@@ -85,7 +82,7 @@ const displayMoreInformation = (phone) => {
     div.classList.add('card');
     div.innerHTML = `
 <img style="width:200px;" src="${phone.image}" class="card-img-top img-fluid mx-auto p-3" alt="...">
-<div class="card-body">
+<div class="card-body shadow-lg p-3  bg-body rounded">
     <h5 class="card-title">Name: ${phone.name}</h5>
     <p class="card-text">ReliseDate: ${phone.releaseDate ? phone.releaseDate : 'No Data found'}</p>
     <p>MainFeatures:${phone.mainFeatures.storage}</p>
