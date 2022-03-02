@@ -19,7 +19,7 @@ const loadSearchField = () => {
     document.getElementById('search-field').value = '';
 }
 
-
+// loadData function
 const loadSearchData = searchText => {
 
     // console.log(searchText);
@@ -29,6 +29,7 @@ const loadSearchData = searchText => {
         .then(data => displayPhone(data.data.slice(0, 20)))
 }
 loadSearchData('phone')
+
 
 const displayPhone = (phones) => {
     // console.log(phones)
