@@ -59,7 +59,7 @@ const displayPhone = (phones) => {
 
 }
 
-
+// load more information
 const moreInformation = (Id) => {
     console.log(Id)
     const url = `https://openapi.programming-hero.com/api/phone/${Id}`;
@@ -70,6 +70,7 @@ const moreInformation = (Id) => {
 
 
 }
+// display more information with detele
 const displayMoreInformation = (phone) => {
     console.log(phone)
     const moreInfo = document.getElementById('more-info');
