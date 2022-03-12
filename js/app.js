@@ -1,6 +1,19 @@
-/*
-load search text 
-*/
+
+// emplement on search button click by Enter press
+const searchBtn = document.getElementById("button-addon2");
+const searchInput = document.getElementById("search-field");
+
+searchInput.addEventListener("keypress", function (event) {
+    // event.preventDefault();
+    if (event.keyCode == 13) {
+        searchBtn.click();
+    }
+
+});
+
+
+
+
 // spinner function
 const toggleSpinner = displayStyle => {
     document.getElementById('spinner').style.display = displayStyle;
